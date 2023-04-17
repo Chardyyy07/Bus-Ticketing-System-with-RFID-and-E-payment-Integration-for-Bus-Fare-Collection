@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAKAY</title>
+    <link rel="stylesheet" href="payment.css" />
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form action="process_payment.php" method="POST">
+
+            <label for="card_number">Enter Card Number:</label>
+            <input type="text" id="card_number" name="card_number"><br>
+
+            <label for="amount">Enter Amount:</label>
+            <input type="number" id="amount" name="amount"><br>
+
+            <label>Enter Amount or select option from denominations below:</label><br>
+
+            <input type="radio" id="10" name="denomination" value="10" onclick="submitForm()">
+            <label for="10">₱10</label><br>
+
+            <input type="radio" id="50" name="denomination" value="50" onclick="submitForm()">
+            <label for="50">₱50</label><br>
+
+            <input type="radio" id="100" name="denomination" value="100" onclick="submitForm()">
+            <label for="100">₱100</label><br>
+
+            <input type="radio" id="500" name="denomination" value="500" onclick="submitForm()">
+            <label for="500">₱500</label><br>
+
+            <input type="radio" id="1000" name="denomination" value="1000" onclick="submitForm()">
+            <label for="1000">₱1000</label><br><br>
+
+        </form>
+    </div>
+
+    <div class="container">
+        <form>
+            <h2>Mode of Payment</h2>
+            <label for="payment_method">Select Payment Method:</label><br>
+
+            <input type="radio" id="credit_card" name="payment_method" value="credit_card">
+            <label for="credit_card"><img src="gcash.png" alt="Credit Card"></label>
+
+            <input type="radio" id="debit_card" name="payment_method" value="debit_card">
+            <label for="debit_card"><img src="paymaya.png" alt="Debit Card"></label>
+
+            <input type="radio" id="paypal" name="payment_method" value="paypal">
+            <label for="paypal"><img src="paymaya.png" alt="PayPal"></label><br>
+        </form>
+    </div>
+
+    <div class="container">
+        <form action="process_payment.php" method="POST">
+            <h2>Load Now!</h2>
+            <label for="email">OPTIONAL: Enter email address to receive purchase receipt:</label>
+            <input type="text" id="email" name="card_number"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Get the selected denomination value
+            const denominationValue = document.querySelector('input[name="denomination"]:checked').value;
+
+            // Set the enter amount field value to the selected denomination value
+            document.getElementById("amount").value = denominationValue;
+        }
+    </script>
+
+</body>
+
+</html>

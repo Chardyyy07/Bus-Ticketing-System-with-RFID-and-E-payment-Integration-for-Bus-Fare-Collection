@@ -1,0 +1,92 @@
+/* General styles */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.container {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+/* Styles for the first form */
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#card_number,
+#email,
+#amount {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+
+/* Styles for the second form */
+
+label[for="credit_card"] img,
+label[for="debit_card"] img,
+label[for="paypal"] img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]+label {
+    display: inline-block;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked+label {
+    background-color: #f2f2f2;
+    border-color: hsl(0, 2%, 38%);
+}
