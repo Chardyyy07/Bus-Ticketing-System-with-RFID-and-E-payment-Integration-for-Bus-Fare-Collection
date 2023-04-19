@@ -11,6 +11,7 @@
 
 <body>
 
+    <!--div element that contains 1st container for Radio Buttons and 2 other input fields.-->
     <div class="container">
         <form action="process_payment.php" method="POST">
 
@@ -58,7 +59,7 @@
         </form>
     </div>
 
-
+    <!--2nd container div element that contains image buttons for mode of payment.-->
     <div class="container">
         <form>
             <h2>Select Payment Method!</h2>
@@ -93,6 +94,7 @@
     </div>
 
 
+    <!--3rd container div element for email.-->
     <div class="container">
         <form id="paymentForm" action="process_payment.php" method="POST">
             <h2>Load Now!</h2>
@@ -100,6 +102,17 @@
             <input type="text" id="email" name="card_number"><br>
             <input type="submit" value="Submit" onclick="generateReceipt()">
         </form>
+    </div>
+
+    <!--div element that serves as the floating pop-up window.-->
+    <div id="orderSummary" class="popup">
+        <h2>Order Summary</h2>
+        <p id="denominationSummary"></p>
+        <p id="paymentMethodSummary"></p>
+        <p id="cardNumberSummary"></p>
+        <p id="emailSummary"></p>
+        <button onclick="cancelOrder()">Cancel</button>
+        <button onclick="confirmOrder()">Confirm</button>
     </div>
 
     <script src="payment.js"></script>
