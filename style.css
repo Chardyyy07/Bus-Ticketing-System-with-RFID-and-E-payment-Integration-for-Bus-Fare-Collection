@@ -27,7 +27,7 @@ a {
 }
 
 .main-nav {
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
 .logo a,
@@ -44,6 +44,9 @@ a {
 .main-nav a {
     color: #34495e;
     font-size: .99em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-nav a:hover {
@@ -80,6 +83,19 @@ a {
     button.button {
         padding: 8px 16px;
         font-size: 1.2em;
+    }
+    .logo a,
+    .main-nav a {
+        padding: 5px;
+        margin: 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo a,
+    .main-nav a {
+        padding: 5px 20px;
+        margin: 0 10px;
     }
 }
 
@@ -141,6 +157,17 @@ a {
         padding: 6px 12px;
         font-size: 1em;
     }
+    .logbtn,
+    .regbtn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        max-width: none;
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        margin: 10px auto;
+    }
 }
 
 .logbtn,
@@ -148,6 +175,7 @@ a {
     background-color: white;
     color: black;
     border: 2px solid #008CBA;
+    border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
@@ -156,6 +184,11 @@ a {
     cursor: pointer;
     max-width: 200px;
     font-size: .99em;
+    vertical-align: middle;
+    position: relative;
+    bottom: 11px;
+    left: 10px;
+    right: 20px
 }
 
 .regbtn {
@@ -168,23 +201,11 @@ a {
 .logbtn {
     color: #121212;
     border-color: #4285f4;
-    padding: 10px 28px;
+    padding: 30px 28px;
 }
-
-.logbtn:hover,
-.regbtn:hover {
-    background-color: #b8d3ff;
-    border-color: #b8d3ff;
-}
-
-
-/* ................................. */
 
 
 /* Styling for the homepage section */
-
-
-/* ................................. */
 
 .homepage {
     position: relative;
@@ -198,13 +219,7 @@ a {
 }
 
 
-/* ................................. */
-
-
 /* Styling for the content inside the section */
-
-
-/* ................................. */
 
 .Lptext {
     text-align: center;
@@ -218,21 +233,18 @@ a {
 .Lptext h1 {
     margin-bottom: 5px;
     color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .Lptext h2 {
     margin-bottom: 10px;
     color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .Lptext p {
     font-size: 18px;
     line-height: 1.5;
-    margin-bottom: 20px;
     color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 100px;
 }
 
 .Lptext button {
@@ -289,7 +301,7 @@ a {
 }
 
 .ourserv {
-    text-align: center
+    text-align: center;
 }
 
 .paragraph {
