@@ -16,7 +16,7 @@ function generateReceipt() {
     var email = document.getElementById('email').value;
 
     // Populate the elements in the floating pop-up window
-    document.getElementById('denominationSummary').innerHTML = 'Denomination: ₱' + denomination;
+    document.getElementById('denominationSummary').innerHTML = 'Price: ₱' + denomination;
     document.getElementById('paymentMethodSummary').innerHTML = 'Payment Method: ' + paymentMethod;
     document.getElementById('cardNumberSummary').innerHTML = 'Card Number: ' + cardNumber;
     document.getElementById('emailSummary').innerHTML = 'Email: ' + email;
