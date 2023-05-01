@@ -17,19 +17,17 @@
     <nav>
         <header class="header">
             <h2 class="logo">
-                <a href="#home"><img src="img/photo.png" alt=""></a>
+                <a href="#ourservices-section">TRIPsPH</a>
             </h2>
             <ul class="main-nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#ourservices-section">Services</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#aboutus-section">About</a></li>
                 <li><a href="#cont">Contact</a></li>
-                <li><a href="signup.html" class="logbtn">Log in</a></li>
-                <li><a href="register.html" class="regbtn">Register</a></li>
+                <li><a href="signup.html" class="logbtn">Ask today!</a></li>
             </ul>
         </header>
     </nav>
-
 
     <section>
         <div class="homepage">
@@ -52,21 +50,21 @@
         </div>
 
         <section id="features-services">
-            <div class="container">
+            <div class="container1">
                 <img src="img/Reloadable Payment Card.jpg" alt="Feature 1">
                 <h2>Reloadable Payment Card</h2>
                 <p>Our reloadable payment cards are now available for use in provincial buses, providing a safer and more convenient commute without the need for cash. With our RFID cards, passengers can simply tap in and out to pay for their fare. </p>
                 <a href="payment.html" class="servbtn">MORE</a>
             </div>
 
-            <div class="container">
+            <div class="container1">
                 <img src="img/Reload using Digital Payment.jpg" alt="Feature 3">
                 <h2>Reload your TRIPsPH Card using Digital Payment</h2>
                 <p>Our digital payment channel allows passengers to conveniently reload their payment cards using their preferred payment method.</p>
                 <a href="payment.html" class="servbtn">LOAD NOW!</a>
             </div>
 
-            <div class="container">
+            <div class="container1">
                 <img src="img/Automatic Fare Collection System.jpg" alt="Feature 2">
                 <h2>Automatic Fare Collection System</h2>
                 <p>Our Automatic Fare Collection System uses web and RFID technology to provide a seamless ticketing process for public transportation.It also includes real-time data tracking and precise management reports that can be easily monitored online
@@ -75,16 +73,80 @@
             </div>
         </section>
 
-        <section>
-            <div class="aboutus-section">
-                <h1>About Us</h1>
-                <p>TRIPsPH is a leading provider of innovative payment solutions for public transportation in the Philippines. Our Transportation RFID Integrated Payment System offers a convenient and secure way to pay for your fare, eliminating the need
+        <section id="contact-us">
+            <div class="contact-us-left">
+                <h1>What is TripsPH?</h1>
+                <h3>TRIPsPH is a leading provider of innovative payment solutions for public transportation in the Philippines. Our Transportation RFID Integrated Payment System offers a convenient and secure way to pay for your fare, eliminating the need
                     for cash and providing a seamless ticketing experience. With our web and RFID technology, passengers can enjoy mobile POS transactions and real-time data tracking, while bus operators benefit from efficient management reports. TRIPsPH
-                    is committed to making public transportation safer, more convenient, and more efficient for everyone.</p>
+                    is committed to making public transportation safer, more convenient, and more efficient for everyone.</h3>
             </div>
+
+            <div class="contact-us-right">
+                <h2>Contact Us</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+
         </section>
+        <!--FOOTER-->
 
+        <footer class="footer-distributed">
 
+            <div class="footer-left">
+
+                <IMG SRC="img/" ALT="" WIDTH=150 HEIGHT=100>
+
+                <p class="footer-links">
+                    <a href="#">Home</a> ┃
+                    <a href="#features-services">Solutions</a> ┃
+                    <a href="#">About Us</a> ┃
+                    <a href="#">Contact</a>
+                </p>
+
+                <p class="footer-company-name">TRIPsPH &copy; 2023</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>Nagtahan St, Sampaloc</span>Manila, Philippines</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+639-502-xxx-482</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@company.com">tripsph@gmail.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>More About TripsPH</span>
+                    <div class="footer-icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                    </div>
+
+            </div>
+
+        </footer>
         <script src="main.js"></script>
 
 </body>
+
+</html>
