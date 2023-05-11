@@ -49,7 +49,6 @@ a {
     padding: 5px 20px;
     text-align: center;
     display: block;
-    color: #fff;
     font-size: .99em;
     line-height: 50px;
     color: #50e5e6;
@@ -442,7 +441,7 @@ a {
     width: 100%;
     text-align: left;
     font: bold 16px sans-serif;
-    padding: 55px 50px;
+    padding: 30px 30px;
 }
 
 .footer-distributed .footer-left,
@@ -459,17 +458,10 @@ a {
     width: 40%;
 }
 
-
-/* The company logo */
-
-.footer-distributed h3 {
+.footer-logo {
     color: #ffffff;
-    font: normal 36px "Cookie", cursive;
-    margin: 0;
-}
-
-.footer-distributed h3 span {
-    color: #5383d3;
+    font-size: 40px;
+    color: #50e5e6;
 }
 
 
@@ -547,6 +539,7 @@ a {
 
 .footer-distributed .footer-right {
     width: 20%;
+    height: 50%;
 }
 
 .footer-distributed .footer-company-about {
@@ -563,6 +556,7 @@ a {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .footer-distributed .footer-icons {
