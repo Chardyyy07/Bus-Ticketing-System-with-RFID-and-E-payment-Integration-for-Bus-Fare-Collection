@@ -1,0 +1,579 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    background: url(img/background.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    margin: 0;
+    font-size: 1.45em;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.main-nav {
+    margin-top: 2px;
+}
+
+.logo a {
+    position: relative;
+    z-index: 1;
+}
+
+.logo a,
+.main-nav a {
+    padding: 5px 20px;
+    text-align: center;
+    display: block;
+    font-size: .99em;
+    line-height: 50px;
+    color: #50e5e6;
+}
+
+.main-nav a {
+    color: #fff;
+    font-size: .99em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-nav a:hover {
+    color: #50e5e6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: sans-serif;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 767px) {
+    .column {
+        width: 100%;
+        display: block;
+    }
+    .header {
+        text-align: center;
+    }
+    .logbtn,
+    .regbtn {
+        width: 100%;
+        margin: 10px auto;
+    }
+    h1 {
+        font-size: 4em;
+    }
+    p {
+        font-size: 1.5em;
+    }
+    button.button {
+        padding: 8px 16px;
+        font-size: 1.2em;
+    }
+    .logo a,
+    .main-nav a {
+        padding: 5px;
+        margin: 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo a,
+    .main-nav a {
+        padding: 5px 20px;
+        margin: 0 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .header,
+    .main-nav {
+        display: flex;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logbtn,
+    .regbtn {
+        width: auto;
+        margin: 0 10px;
+    }
+    h1 {
+        font-size: 4em;
+    }
+    p {
+        font-size: 1.5em;
+    }
+    button.button {
+        padding: 8px 16px;
+        font-size: 1.2em;
+    }
+    .column {
+        width: 100%;
+        display: block;
+    }
+}
+
+@media (min-width: 1025px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    h1 {
+        font-size: 4em;
+    }
+    p {
+        font-size: 1.5em;
+    }
+    button.button {
+        padding: 8px 16px;
+        font-size: 1.2em;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 3em;
+    }
+    p {
+        font-size: 1.2em;
+    }
+    button.button {
+        padding: 6px 12px;
+        font-size: 1em;
+    }
+    .logbtn,
+    .regbtn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        max-width: none;
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        margin: 10px auto;
+    }
+}
+
+.logbtn {
+    color: #50e5e6;
+    background-color: transparent;
+    font-size: 22px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 3px solid #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logbtn:hover {
+    background-color: #fff;
+    color: #fff;
+}
+
+
+/* Styling for the homepage section */
+
+.homepage {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage .contanier {
+    width: 85%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.homepage .Lptext {
+    width: 50%;
+    word-spacing: 10px;
+    margin-bottom: 200px;
+}
+
+.homepage .Lptext h1 {
+    color: #50e5e6;
+    font-size: 70px;
+    margin: 0
+}
+
+.homepage .Lptext h3 {
+    color: #fff;
+    font-size: 60px;
+    margin-bottom: 20px;
+    margin: 0
+}
+
+.homepage .Lptext p {
+    color: #dedede;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 50px;
+}
+
+.homepage .Lptext .btn {
+    color: #fff;
+    padding: 15px 30px;
+    background-color: #50e5e6;
+    font-size: 22px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 3px solid #50e5e6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.homepage .Lptext .btn:hover {
+    background-color: transparent;
+}
+
+.homepage .div-img {
+    width: 430px;
+    z-index: 50;
+    position: absolute;
+    bottom: -3px;
+    right: 60px;
+}
+
+.homepage.div-img img {
+    width: 100%;
+}
+
+
+/* Styling the form of Our Services*/
+
+.ourservices-section {
+    padding: 50px;
+    text-align: center;
+    background: linear-gradient(#194f8e, #6c2b6c);
+    color: white;
+}
+
+#features-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 50px;
+    box-sizing: border-box;
+    background: linear-gradient( #6c2b6c, #194f8e);
+}
+
+.container1 {
+    flex: 1 1 300px;
+    max-width: 350px;
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.container1 img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.container1 h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.container1 p {
+    text-align: justify;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.container1 .servbtn {
+    color: #fff;
+    padding: 15px 0;
+    background-color: #50e5e6;
+    font-size: 22px;
+    font-weight: bold;
+    border: 3px solid #50e5e6;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.container1 .servbtn:hover {
+    background-color: transparent;
+}
+
+
+/* Styling the form of about and contact us*/
+
+#contact-us {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contact-us-left {
+    flex: 1;
+    padding-left: 20px;
+    color: #fff;
+}
+
+.contact-us-left h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.contact-us-left h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #666;
+    color: #fff;
+}
+
+.contact-us-right {
+    flex: 1;
+    margin-left: 50px;
+    padding-right: 20px;
+    color: #fff;
+}
+
+.contact-us-right h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.contact-us-right form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #666;
+    color: #fff;
+}
+
+.contact-us-right form input,
+.contact-us-right form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contact-us-right form textarea {
+    height: 150px;
+}
+
+.contact-us-right form button[type="submit"] {
+    background-color: #008CBA;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.contact-us-right form button[type="submit"]:hover {
+    background-color: #006080;
+}
+
+.contact-us-right form button[type="submit"]:focus {
+    outline: none;
+}
+
+
+/* Styling the form of footer*/
+
+.footer-distributed {
+    background: linear-gradient(#194f8e, #6c2b6c);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 30px 30px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+    width: 40%;
+}
+
+.footer-logo {
+    color: #ffffff;
+    font-size: 40px;
+    color: #50e5e6;
+}
+
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+    color: #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #8f9296;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+    width: 35%;
+    color: #ffffff;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+    color: #ffffff;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: #ffffff;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: #5383d3;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+    width: 20%;
+    height: 50%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
