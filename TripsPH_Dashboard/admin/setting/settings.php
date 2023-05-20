@@ -1,3 +1,6 @@
+<?php
+include "../config.php";
+?>
 
 <?php
 // Initialize the session
@@ -8,7 +11,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -32,9 +34,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <h3>T<span>ripsPH</span></h3>
         </div>
 
+
         <div class="side-content">
     <div class="profile">
-        <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+    <span class="las la-user-circle" style="color: #899DC1; font-size: 96px;"></span>
+
         <h4>
             <?php
             if (isset($_SESSION['username'])) {
@@ -62,25 +66,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </li>
                     <li>
                        <a href="../cardmanagement/card_management.php">
-                            <span class="las la-envelope"></span>
+                            <span class="las la-id-card"></span>
                             <small>Card Management</small>
                         </a>
                     </li>
                     <li>
                        <a href="../busfarecollection/bus_fare_collection.php">
-                            <span class="las la-clipboard-list"></span>
+                            <span class="las la-bus"></span>
                             <small>Bus Fare Collections</small>
                         </a>
                     </li>
                     <li>
                        <a href="../cardtransactions/card_transactions.php">
-                            <span class="las la-shopping-cart"></span>
+                            <span class="las la-credit-card"></span>
                             <small>Card Transactions</small>
                         </a>
                     </li>
                     <li>
                        <a href="settings.php" class="active">
-                            <span class="las la-tasks"></span>
+                            <span class="las la-cog"></span>
                             <small>Settings</small>
                         </a>
                     </li>
@@ -113,12 +117,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <span class="notify">3</span>
                     </div>
                     
+                                    
                     <div class="user">
                         <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>
-
                         <span class="las la-power-off"></span>
-                        <a href="logout.php">
-                        <span>Logout</span>
+                        <a href="../logout.php">
+                        <span>Logout</span></a>
                     </div>
                 </div>
             </div>

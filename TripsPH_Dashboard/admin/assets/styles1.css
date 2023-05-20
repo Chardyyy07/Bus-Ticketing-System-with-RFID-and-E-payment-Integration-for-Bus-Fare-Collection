@@ -85,21 +85,6 @@ side-head span {
     padding: 2rem 0rem;
 }
 
-.bg-img {
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    background-size: cover;
-}
-
-.profile-img {
-    height: 80px;
-    width: 80px;
-    display: inline-block;
-    margin: 0 auto .5rem auto;
-    border: 3px solid #899DC1;
-}
-
 .profile h4 {
     color: #fff;
     font-weight: 500;
@@ -467,10 +452,22 @@ table tbody tr {
     color: #777;
 }
 
+.actions {
+    display: flex;
+    align-items: center;
+}
+
 .actions span {
     display: inline-block;
-    font-size: 1.5rem;
-    margin-right: .5rem;
+}
+
+.actions a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.actions i {
+    font-size: 24px;
 }
 
 .paid {

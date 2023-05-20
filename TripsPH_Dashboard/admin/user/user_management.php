@@ -1,3 +1,6 @@
+<?php
+include "../config.php";
+?>
 
 <?php
 // Initialize the session
@@ -8,8 +11,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +24,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" href="../assets/styles1.css">
   <!-- Copied from https://icons8.com/line-awesome/howto then copy the CDN for icons  -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+   <!--icons class retrieved from https://icons8.com/line-awesome -->
 </head>
 
 
@@ -34,7 +38,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         <div class="side-content">
     <div class="profile">
-        <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+    <span class="las la-user-circle" style="color: #899DC1; font-size: 96px;"></span>
+
         <h4>
             <?php
             if (isset($_SESSION['username'])) {
@@ -62,25 +67,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </li>
                     <li>
                        <a href="../cardmanagement/card_management.php">
-                            <span class="las la-envelope"></span>
+                            <span class="las la-id-card"></span>
                             <small>Card Management</small>
                         </a>
                     </li>
                     <li>
                        <a href="../busfarecollection/bus_fare_collection.php">
-                            <span class="las la-clipboard-list"></span>
+                            <span class="las la-bus"></span>
                             <small>Bus Fare Collections</small>
                         </a>
                     </li>
                     <li>
                        <a href="../cardtransactions/card_transactions.php">
-                            <span class="las la-shopping-cart"></span>
+                            <span class="las la-credit-card"></span>
                             <small>Card Transactions</small>
                         </a>
                     </li>
                     <li>
                        <a href="../setting/settings.php">
-                            <span class="las la-tasks"></span>
+                            <span class="las la-cog"></span>
                             <small>Settings</small>
                         </a>
                     </li>
@@ -92,7 +97,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <!-- Start ng header-->
   <div class="main-content">
         
-        <header>
+  <header>
             <div class="header-content">
                 <label for="menu-toggle">
                     <span class="las la-bars"></span>
@@ -115,10 +120,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     
                     <div class="user">
                         <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>
-
                         <span class="las la-power-off"></span>
-                        <a href="logout.php">
-                        <span>Logout</span>
+                        <a href="../logout.php">
+                        <span>Logout</span></a>
                     </div>
                 </div>
             </div>
@@ -128,12 +132,59 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
      
 <!-- Start ng main Dashboard Module-->
 <main>
-          
+<div class="records table-responsive">
+
+<div class="record-header">
+    <div class="add">
+        <span>Entries</span>
+
+        <select name="" id="">
+            <option value="">ID</option>
+        </select>
+        <a href="add-record.php" class="button">Add Record</a>
+    </div>
+
+    <div class="browse">
+    <span class="las la-search"></span>
+       <input type="search" placeholder="Search" class="record-search">
+    </div>
+</div>
+
+<div>
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><span class="las la-sort"></span> Username</th>
+      <th><span class="las la-sort"></span> Password</th>
+      <th><span class="las la-sort"></span> Created at</th>
+      <th><span class="las la-sort"></span> Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $sql = "SELECT * FROM `users`";
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      ?>
+      <tr>
+        <td><?php echo $row["id"] ?></td>
+        <td><?php echo $row["username"] ?></td>
+        <td><?php echo $row["password"] ?></td>
+        <td><?php echo $row["created_at"] ?></td>
+        <td class="actions">
+          <a href="edit.php?id=<?php echo $row["id"] ?>"><i class="las la-edit"></i></a>
+          <a href="delete.php?id=<?php echo $row["id"] ?>"><i class="las la-trash"></i></a>
+        </td>
+      </tr>
+    <?php 
+    }
+    ?>
+  </tbody>
+</table>
+  </div>          
+        </main>  
     <!-- end ng main dashboard module-->
 </body>
 </html>
-
-
- 
-
-

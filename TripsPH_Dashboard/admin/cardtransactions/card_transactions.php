@@ -1,5 +1,9 @@
 
 <?php
+include "../config.php";
+?>
+
+<?php
 // Initialize the session
 session_start();
  
@@ -8,7 +12,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -32,9 +35,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <h3>T<span>ripsPH</span></h3>
         </div>
 
+
         <div class="side-content">
     <div class="profile">
-        <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+    <span class="las la-user-circle" style="color: #899DC1; font-size: 96px;"></span>
+
         <h4>
             <?php
             if (isset($_SESSION['username'])) {
@@ -62,25 +67,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </li>
                     <li>
                        <a href="../cardmanagement/card_management.php">
-                            <span class="las la-envelope"></span>
+                            <span class="las la-id-card"></span>
                             <small>Card Management</small>
                         </a>
                     </li>
                     <li>
                        <a href="../busfarecollection/bus_fare_collection.php">
-                            <span class="las la-clipboard-list"></span>
+                            <span class="las la-bus"></span>
                             <small>Bus Fare Collections</small>
                         </a>
                     </li>
                     <li>
                        <a href="card_transactions.php" class="active">
-                            <span class="las la-shopping-cart"></span>
+                            <span class="las la-credit-card"></span>
                             <small>Card Transactions</small>
                         </a>
                     </li>
                     <li>
                        <a href="../setting/settings.php">
-                            <span class="las la-tasks"></span>
+                            <span class="las la-cog"></span>
                             <small>Settings</small>
                         </a>
                     </li>
@@ -112,13 +117,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <span class="las la-bell"></span>
                         <span class="notify">3</span>
                     </div>
-                    
+                     
                     <div class="user">
                         <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>
-
                         <span class="las la-power-off"></span>
-                        <a href="logout.php">
-                        <span>Logout</span>
+                        <a href="../logout.php">
+                        <span>Logout</span></a>
                     </div>
                 </div>
             </div>
@@ -128,6 +132,66 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
      
 <!-- Start ng main Dashboard Module-->
 <main>
+<div class="records table-responsive">
+
+<div class="record-header">
+    <div class="add">
+        <span>Entries</span>
+        <select name="" id="">
+            <option value="">ID</option>
+        </select>
+        <a href="add-record.php" class="button">Add Record</a>
+    </div>
+
+    <div class="browse">
+       <input type="search" placeholder="Search" class="record-search">
+    </div>
+</div>
+
+<div>
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><span class="las la-sort"></span> Reload Transaction ID</th>
+      <th><span class="las la-sort"></span> RFID Card UID</th>
+      <th><span class="las la-sort"></span> Card Holders Name</th>
+      <th><span class="las la-sort"></span> Reload Amount</th>
+      <th><span class="las la-sort"></span> Card Balance</th>
+      <th><span class="las la-sort"></span> Created at</th>
+      <th><span class="las la-sort"></span> Card Status</th>
+      <th><span class="las la-sort"></span> Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $sql = "SELECT * FROM `users`";
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      ?>
+      <tr>
+        <td><?php echo $row["id"] ?></td>
+        <td><?php echo $row["created_at"] ?></td>
+        <td><?php echo $row["username"] ?></td>
+        <td><?php echo $row["created_at"] ?></td>
+        <td><?php echo $row["created_at"] ?></td>
+        <td><?php echo $row["username"] ?></td>
+        <td><?php echo $row["created_at"] ?></td>
+        <td><?php echo $row["created_at"] ?></td>
+        <td class="actions">
+          <a href="view.php?id=<?php echo $row["id"] ?>"><i class="las la-eye"></i></a>
+          <a href="edit.php?id=<?php echo $row["id"] ?>"><i class="las la-edit"></i></a>
+          <a href="delete.php?id=<?php echo $row["id"] ?>"><i class="las la-trash"></i></a>
+        </td>
+      </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
+  </div>          
+</main>        
           
     <!-- end ng main dashboard module-->
 </body>

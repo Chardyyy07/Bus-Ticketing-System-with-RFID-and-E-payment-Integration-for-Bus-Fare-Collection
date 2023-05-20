@@ -2,7 +2,7 @@
 
 Create a table named *tripsph* inside your MySQL database using the following code.
 
-import the tripsph.sql from C:\xampp\htdocs\TripsPH_Dashboard\assets\db\tripsph.sql to the sql
+import the tripsph.sql from C:\xampp\htdocs\TripsPH_Dashboard\assets\db\tripsph.sql to the sql section
 
 ### ****Copy files to htdocs folder****
 
