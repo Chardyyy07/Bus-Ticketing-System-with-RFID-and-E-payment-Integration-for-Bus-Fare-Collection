@@ -178,7 +178,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <td><?php echo $row["created_at"] ?></td>
         <td><?php echo $row["created_at"] ?></td>
         <td class="actions">
-          <a href="view.php?id=<?php echo $row["id"] ?>"><i class="las la-eye"></i></a>
+        <a href="#" onclick="showData(<?php echo $row["id"] ?>)"><i class="las la-eye"></i></a>
           <a href="edit.php?id=<?php echo $row["id"] ?>"><i class="las la-edit"></i></a>
           <a href="delete.php?id=<?php echo $row["id"] ?>"><i class="las la-trash"></i></a>
         </td>
@@ -191,6 +191,36 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div>          
 </main>          
     <!-- end ng main dashboard module-->
+    
+        <!-- Dialog Box -->
+        <div id="dialogBox" class="dialog-box">
+            <div class="dialog-content">
+                <span class="close">&times;</span>
+                <div id="dialogData"></div>
+            </div>
+        </div>
+
+        <script>
+            function showData(id) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("dialogData").innerHTML = this.responseText;
+                        var dialogBox = document.getElementById("dialogBox");
+                        dialogBox.style.display = "block";
+                    }
+                };
+                xhttp.open("GET", "view.php?id=" + id, true);
+                xhttp.send();
+            }
+
+            var close = document.getElementsByClassName("close")[0];
+            close.onclick = function() {
+                var dialogBox = document.getElementById("dialogBox");
+                dialogBox.style.display = "none";
+            }
+        </script>
+    </div>
 </body>
 </html>
 
