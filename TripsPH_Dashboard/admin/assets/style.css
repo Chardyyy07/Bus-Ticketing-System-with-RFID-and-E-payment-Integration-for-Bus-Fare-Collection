@@ -380,6 +380,7 @@ a {
     line-height: 2rem;
     color: #666;
     color: #fff;
+    text-align: justify;
 }
 
 .contact-us-right {
@@ -393,6 +394,7 @@ a {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #fff;
+    text-align: center;
 }
 
 .contact-us-right form label {
