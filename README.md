@@ -9,50 +9,67 @@ maging organize yung mga code tas makita natin yung progress natin. Yun lang tha
 Create a table named *tripsph* inside your MySQL database using the following code.
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `date_created` date NOT NULL
+  `password` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Table for users' credentials of the card
-CREATE TABLE cards_user (
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    card_holder_name VARCHAR(255) NULL,
-    password VARCHAR(255) NULL,
-    email VARCHAR(255) NOT NULL,
-    card_id_number BIGINT NOT NULL,
-    current_balance BIGINT NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY (email),
-    UNIQUE KEY (card_id_number)
+
+-- Create Cardholders table
+CREATE TABLE Cardholders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cardholder_id INT,
+    card_number VARCHAR(255),
+    cardholder_name VARCHAR(255),
+    cardholder_email VARCHAR(255),
+    PASSWORD VARCHAR(255),
+    balance DECIMAL(10, 2),
+    STATUS ENUM('Active', 'Inactive'),
+    date_created DATE,
+    INDEX idx_cardholder_id (cardholder_id),
+    INDEX idx_card_number (card_number),
+    INDEX idx_cardholder_email (cardholder_email)
+    INDEX idx_ccardholder_name (cardholder_name)
+    INDEX idx_balance (balance)
 );
 
--- Table for users that transact and reload their card
-CREATE TABLE card_reload (
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    card_user_id BIGINT UNSIGNED NOT NULL,
-    reload_amount BIGINT NOT NULL,
-    transaction_details VARCHAR(255) NOT NULL,
-    transaction_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (card_user_id) REFERENCES cards_user(id)
+-- Create Transactions for Reloading Card table
+CREATE TABLE Transactions_Reloading_Card (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cardtransaction_id INT,
+    cardholder_name VARCHAR(255),
+    cardholder_email VARCHAR(255),
+    card_number VARCHAR(255),
+    amount DECIMAL(10, 2),
+    balance DECIMAL(10, 2),
+    STATUS ENUM('Pending', 'Completed'),
+    date_created DATE,
+    INDEX idx_cardtransaction_id (cardtransaction_id),
+    INDEX idx_cardholder_email (cardholder_email),
+    INDEX idx_card_number (card_number)
+    INDEX idx_cardholder_name (cardholder_name)
+    INDEX idx_balance (balance)
 );
 
--- Table for users that transact in bus fare collection with their card
-CREATE TABLE bus_fare_collection (
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    card_user_id BIGINT UNSIGNED NOT NULL,
-    origin VARCHAR(255) NOT NULL,
-    destination VARCHAR(255) NOT NULL,
-    total_fare BIGINT NOT NULL,
-    transaction_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    transaction_details VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (card_user_id) REFERENCES cards_user(id)
+-- Create Bus Fare Collection table
+CREATE TABLE Bus_Fare_Collection (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    bus_fare_id INT,
+    cardholder_email VARCHAR(255),
+    card_number VARCHAR(255),
+    balance DECIMAL(10, 2),
+    STATUS ENUM('in', 'out'),
+    origin VARCHAR(255),
+    destination VARCHAR(255),
+    total_fare DECIMAL(10, 2),
+    date_created DATE,
+    INDEX idx_bus_fare_id (bus_fare_id),
+    INDEX idx_cardholder_email (cardholder_email),
+    INDEX idx_card_number (card_number)
+    INDEX idx_balance (balance)
 );
+
 
 or import the tripsph.sql from C:\xampp\htdocs\TripsPH_Dashboard\assets\db\tripsph.sql to the sql section
 
