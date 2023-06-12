@@ -8,7 +8,8 @@ if (isset($_POST["submit"])) {
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO `users`(`id`, `username`, `password`) VALUES (NULL, '$username', '$hashedPassword')";
+    $sql = "INSERT INTO `users`(`username`, `password`) 
+    VALUES ('$username', '$hashedPassword')";
 
     $result = mysqli_query($link, $sql);
 
@@ -45,7 +46,6 @@ if (isset($_POST["submit"])) {
 
 <body>
    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00ff5573;">
-      PHP Complete CRUD Application
    </nav>
 
    <div class="container">

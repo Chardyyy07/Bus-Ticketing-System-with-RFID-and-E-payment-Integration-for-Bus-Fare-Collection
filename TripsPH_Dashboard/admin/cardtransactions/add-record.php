@@ -2,13 +2,17 @@
 include "../config.php";
 
 if (isset($_POST["submit"])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $cardtransaction_id = $_POST['cardtransaction_id'];
+    $cardholder_name = $_POST['cardholder_name'];
+    $cardholder_email = $_POST['cardholder_email'];
+    $card_number = $_POST['card_number'];
+    $amount = $_POST['amount'];
+    $balance = $_POST['balance'];
+    $STATUS = $_POST['STATUS'];
+    $date_created = $_POST['date_created'];
 
-    // Hash the password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO `users`(`id`, `username`, `password`) VALUES (NULL, '$username', '$hashedPassword')";
+    $sql = "INSERT INTO `transactions_reloading_card`(`id`, `cardtransaction_id`, `cardholder_name`, `cardholder_email`, `card_number`, `amount`, `balance`, `STATUS`, `date_created`) 
+    VALUES (NULL, '$cardtransaction_id', '$cardholder_name', '$cardholder_email', '$card_number', '$amount', '$balance', '$STATUS', '$date_created')";
 
     $result = mysqli_query($link, $sql);
 
@@ -20,9 +24,6 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -44,7 +45,6 @@ if (isset($_POST["submit"])) {
 
 <body>
    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00ff5573;">
-      PHP Complete CRUD Application
    </nav>
 
    <div class="container">
@@ -57,16 +57,54 @@ if (isset($_POST["submit"])) {
          <form action="" method="post" style="width:50vw; min-width:300px;">
             <div class="row mb-3">
                <div class="col">
-                  <label class="form-label">Username:</label>
-                  <input type="text" class="form-control" name="username" placeholder="Albert">
+                  <label class="form-label">Card Transaction ID:</label>
+                  <input type="text" class="form-control" name="cardtransaction_id" placeholder="12345">
                </div>
 
                <div class="col">
-                  <label class="form-label">Password:</label>
-                  <input type="text" class="form-control" name="password" placeholder="Einstein">
+                  <label class="form-label">Cardholder Name:</label>
+                  <input type="text" class="form-control" name="cardholder_name" placeholder="John Doe">
                </div>
             </div>
 
+            <div class="row mb-3">
+               <div class="col">
+                  <label class="form-label">Cardholder Email:</label>
+                  <input type="email" class="form-control" name="cardholder_email" placeholder="john.doe@example.com">
+               </div>
+
+               <div class="col">
+                  <label class="form-label">Card Number:</label>
+                  <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456">
+               </div>
+            </div>
+
+            <div class="row mb-3">
+               <div class="col">
+                  <label class="form-label">Amount:</label>
+                  <input type="text" class="form-control" name="amount" placeholder="100">
+               </div>
+
+               <div class="col">
+                  <label class="form-label">Balance:</label>
+                  <input type="number" class="form-control" name="balance" placeholder="Balance" required>
+               </div>
+               </div>
+
+            <div class="row mb-3">
+               <div class="col">
+                  <label class="form-label">Status:</label>
+                  <select class="form-select" name="STATUS" required>
+                     <option value="Pending">Pending</option>
+                     <option value="Completed">Completed</option>
+                  </select>
+               </div>
+
+               <div class="col">
+                  <label class="form-label">Date Created:</label>
+                  <input type="date" class="form-control" name="date_created" required>
+               </div>
+               </div>
             <div>
                <button type="submit" class="btn btn-success" name="submit">Save</button>
                <a href="card_transactions.php" class="btn btn-danger">Cancel</a>

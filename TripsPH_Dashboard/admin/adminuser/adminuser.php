@@ -20,6 +20,8 @@ require_once('../../admin/config.php');
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>TripsPH Admin Dashboard</title>
 
+    <!-- style libraries -->
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
@@ -45,17 +47,37 @@ require_once('../../admin/config.php');
         <div class="side-content">
             <div class="profile">
                 <span class="las la-user-circle" style="color: #899DC1; font-size: 96px;"></span>
-
                 <h4>
+                    <!-- script para mag show yung name sa navbar -->
                     <?php
                     if (isset($_SESSION['username'])) {
                         echo $_SESSION['username'];
                     } else {
-                        echo 'Default Name'; // Change this to the default name if no user is logged in
+                        echo 'Default Name';
                     }
                     ?>
                 </h4>
-                <small>Admin</small>
+
+                <!-- script para mag show yung name sa role w/ condition -->
+                <small>
+                    <?php
+                    if (isset($_SESSION['user_role_id'])) {
+                        $role = 'Default Role';
+                        if ($_SESSION['user_role_id'] == 1) {
+                            $role = 'Admin';
+                        } elseif ($_SESSION['user_role_id'] == 2) {
+                            $role = 'Editor';
+                        } elseif ($_SESSION['user_role_id'] == 3) {
+                            $role = 'User Only';
+                        }
+                        echo $role;
+                    } else {
+                        echo 'Default Role';
+                    }
+                    ?>
+                </small>
+
+                <!-- div for the nav bar -->
             </div>
             <div class="side-menu">
                 <ul>
@@ -66,7 +88,7 @@ require_once('../../admin/config.php');
                         </a>
                     </li>
                     <li>
-                        <a href="user_management.php" class="active">
+                        <a href="../admin/user_management.php">
                             <span class="las la-user-alt"></span>
                             <small>User Admin Management</small>
                         </a>
@@ -78,19 +100,19 @@ require_once('../../admin/config.php');
                         </a>
                     </li>
                     <li>
-                        <a href="../busfarecollection/bus_fare_collection.php">
+                        <a href="../admin/busfarecollection/bus_fare_collection.php">
                             <span class="las la-bus"></span>
                             <small>Bus Fare Collections</small>
                         </a>
                     </li>
                     <li>
-                        <a href="../cardtransactions/card_transactions.php">
+                        <a href="../admin/cardtransactions/card_transactions.php">
                             <span class="las la-credit-card"></span>
                             <small>Card Transactions</small>
                         </a>
                     </li>
                     <li>
-                        <a href="../setting/settings.php">
+                        <a href="../admin/setting/settings.php">
                             <span class="las la-cog"></span>
                             <small>Settings</small>
                         </a>
@@ -112,17 +134,21 @@ require_once('../../admin/config.php');
 
                 <div class="header-menu">
                     <!--only visible to admin-->
-                    <?php if ($_SESSION['user_role_id'] == 1) { ?>
+                    <?php if ($_SESSION['user_role_id'] <= 1) { ?>
                         <label for="">
-                            <span class="las la-user-tie"></span>
-                            <a href="../adminuser/adminuser.php"><span>User List</span></a>
+                            <span class="las la-users"></span>
+                            <a href="/adminuser.php"><span>User List</span></a>
+                        </label>
+                    <?php } else { ?>
+                        <label for="">
+                            <span class="las la-users"></span>
+                            <span>User List</span>
                         </label>
                     <?php } ?>
 
 
-
                     <label for="">
-                        <span class="las la-user-alt"></span>
+                        <span class="las la-user-tie"></span>
                         <a href="../adminuser/adminuser.php"><span>Profile</span></a>
                     </label>
 
@@ -132,46 +158,68 @@ require_once('../../admin/config.php');
                     </label>
                 </div>
         </header>
+
+
         <!-- Start ng main Dashboard Module-->
         <main>
-
+            <!-- front end ng table -->
             <div class="page-content">
 
                 <div class="records table-responsive">
 
                     <div class="record-header">
                         <div class="add">
-                            </select>
-                            <a href="add-record.php" class="button">Add Record</a>
+                            <!-- clickable for admin and Editor only -->
+                            <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
+                                <a href="addrecord.php" class="btn btn-info btn-sm">Add Record</a>
+                            <?php } else { ?>
+                                <a class="btn btn-info btn-sm disabled">Add Record</a>
+                            <?php } ?>
                         </div>
-
                     </div>
+
                     <div>
                         <div class="record-header">
                             <div class="records table-responsive">
                                 <table id="example" class="table table-striped" style="width: 100%">
                                     <thead>
-                                        <tr>
-                                            <th style="vertical-align: middle;">id</th>
-                                            <th style="vertical-align: middle;">role id</th>
+                                        <tr><!-- front end ng table -->
+                                            <th style="vertical-align: middle;">ID</th>
+                                            <th style="vertical-align: middle;">Role</th>
                                             <th style="vertical-align: middle;">Fullname</th>
                                             <th style="vertical-align: middle;">Username</th>
                                             <th style="vertical-align: middle;">Email</th>
                                             <th style="vertical-align: middle;">Mobile</th>
-                                            <th style="vertical-align: middle;">created at</th>
-                                            <th style="vertical-align: middle;">updated_at</th>
+                                            <th style="vertical-align: middle;">Created At</th>
+                                            <th style="vertical-align: middle;">Updated At</th>
                                             <th style="vertical-align: middle;">Actions</th>
                                         </tr>
                                     </thead>
+                                    <!-- back end ng table -->
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM `tbl_users`";
+                                        // mention of columns in two separate table but one database
+                                        $sql = "SELECT u.*, r.user_role FROM `tbl_users` u INNER JOIN `tbl_user_role` r ON u.user_role_id = r.id";
                                         $result = mysqli_query($link, $sql);
                                         while ($row = mysqli_fetch_assoc($result)) {
                                         ?>
                                             <tr>
                                                 <td style="vertical-align: middle;"><?php echo $row["id"] ?></td>
-                                                <td style="vertical-align: middle;"><?php echo $row["user_role_id"] ?></td>
+                                                <!-- condition sa output kung admin, editor and user only sa front end-->
+                                                <td style="vertical-align: middle;">
+                                                    <?php
+                                                    $userRole = $row["user_role"];
+                                                    if ($userRole == "Admin") {
+                                                        echo "<span class='badge badge-lg badge-success text-white'>Admin</span>";
+                                                    } elseif ($userRole == "Editor") {
+                                                        echo "<span class='badge badge-lg badge-info text-white'>Editor</span>";
+                                                    } elseif ($userRole == "User Only") {
+                                                        echo "<span class='badge badge-lg badge-dark text-white'>User Only</span>";
+                                                    } else {
+                                                        echo $userRole;
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td style="vertical-align: middle;"><?php echo $row["full_name"] ?></td>
                                                 <td style="vertical-align: middle;"><?php echo $row["username"] ?></td>
                                                 <td style="vertical-align: middle;"><?php echo $row["email"] ?></td>
@@ -179,27 +227,36 @@ require_once('../../admin/config.php');
                                                 <td style="vertical-align: middle;"><?php echo $row["created_at"] ?></td>
                                                 <td style="vertical-align: middle;"><?php echo $row["updated_at"] ?></td>
                                                 <td class="actions" style="vertical-align: middle;">
-                                                    <a href="#" onclick="showData(<?php echo htmlspecialchars($row['id']); ?>)"><i class="las la-eye"></i></a>
-                                                    <a href="edit.php?id=<?php echo $row["id"] ?>"><i class="las la-edit"></i></a>
-                                                    <a href="delete.php?id=<?php echo $row["id"] ?>"><i class="las la-trash"></i></a>
+                                                    <a class="btn btn-success btn-sm" href="views.php?id=<?php echo $row["id"] ?>">View</a>
+                                                    <!-- visible for admin and editor only -->
+                                                    <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
+                                                        <a class="btn btn-info btn-sm" href="edit.php?id=<?php echo $row["id"] ?>">Edit</a>
+                                                        <!-- visible for admin only -->
+                                                        <?php if ($_SESSION['user_role_id'] <= 1) { ?>
+                                                            <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row["id"] ?>">Delete</a>
+                                                        <?php } ?>
+                                                        <a class="btn btn-warning btn-sm" href="delete.php?id=<?php echo $row["id"] ?>">Active</a>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php
                                         }
                                         ?>
-
                                     </tbody>
                                     <tfoot>
                                 </table>
-                                <!-- script for the table pagination,search, filter and show-->
-                                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                                <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-                                <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-                                <script>
-                                    $(document).ready(function() {
-                                        $("#example").DataTable();
-                                    });
-                                </script>
+                            </div>
+                        </div>
+
+                        <!-- script for the table pagination,search, filter and show-->
+                        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+                        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                                $("#example").DataTable();
+                            });
+                        </script>
 </body>
 
 </html>
