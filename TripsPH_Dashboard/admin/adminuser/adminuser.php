@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION['id'], $_SESSION['user_role_id'])) {
-    header('location: dashboard.php?lmsg=true');
+    header('location:../../admin/login.php?lmsg=true');
     exit;
 }
 
@@ -227,7 +227,7 @@ require_once('../../admin/config.php');
                                                 <td style="vertical-align: middle;"><?php echo $row["created_at"] ?></td>
                                                 <td style="vertical-align: middle;"><?php echo $row["updated_at"] ?></td>
                                                 <td class="actions" style="vertical-align: middle;">
-                                                    <a class="btn btn-success btn-sm" href="views.php?id=<?php echo $row["id"] ?>">View</a>
+                                                    <a class="btn btn-success btn-sm" href="view.php?id=<?php echo $row["id"] ?>">View</a>
                                                     <!-- visible for admin and editor only -->
                                                     <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
                                                         <a class="btn btn-info btn-sm" href="edit.php?id=<?php echo $row["id"] ?>">Edit</a>
@@ -254,7 +254,7 @@ require_once('../../admin/config.php');
                         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
                         <script>
                             $(document).ready(function() {
-                                $("#example").DataTable();
+                                $('#example').DataTable();
                             });
                         </script>
 </body>
