@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to the login page
 if (!isset($_SESSION['id'], $_SESSION['user_role_id'])) {
-    header('location: ../../admin/login.php?lmsg=true');
+    header('location:../../admin/login.php?lmsg=true');
     exit;
 }
 
@@ -114,6 +114,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     </div>
                     <div>
                         <button type="submit" class="btn btn-success" name="submit">Save</button>
+                        <a href="updatepass.php" class="btn btn-info">Update Password</a>
                         <a href="adminuser.php" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>

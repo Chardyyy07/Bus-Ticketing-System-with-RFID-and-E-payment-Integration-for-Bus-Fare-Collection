@@ -2,29 +2,25 @@
 include "../config.php";
 
 if (isset($_POST["submit"])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+   $username = $_POST['username'];
+   $password = $_POST['password'];
 
-    // Hash the password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+   // Hash the password
+   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO `users`(`username`, `password`) 
+   $sql = "INSERT INTO `users`(`username`, `password`) 
     VALUES ('$username', '$hashedPassword')";
 
-    $result = mysqli_query($link, $sql);
+   $result = mysqli_query($link, $sql);
 
-    if ($result) {
-        header("Location: user_management.php?msg=New record created successfully");
-        exit();
-    } else {
-        echo "Failed: " . mysqli_error($link);
-    }
+   if ($result) {
+      header("Location: user_management.php?msg=New record created successfully");
+      exit();
+   } else {
+      echo "Failed: " . mysqli_error($link);
+   }
 }
 ?>
-
-
-
-
 
 
 <!DOCTYPE html>

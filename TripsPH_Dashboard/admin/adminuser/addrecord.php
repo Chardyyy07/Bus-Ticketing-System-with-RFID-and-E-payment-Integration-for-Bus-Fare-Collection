@@ -10,12 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"];
     $user_role_id = $_POST["user_role_id"];
 
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     // Insert data into the database
-    $query = "INSERT INTO tbl_users (full_name, username, email, mobile, password, user_role_id) VALUES ('$full_name', '$username', '$email', '$mobile', '$password', '$user_role_id')";
+    $query = "INSERT INTO tbl_users (full_name, username, email, mobile, password, user_role_id) VALUES ('$full_name', '$username', '$email', '$mobile', '$hashedPassword', '$user_role_id')";
 
     if (mysqli_query($link, $query)) {
         // Data inserted successfully
         header("Location: adminuser.php?msg=New record created successfully");
+        exit(); // Add exit() after header() to prevent further execution
     } else {
         // Error occurred while inserting data
         echo "Error: " . mysqli_error($link);
@@ -46,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div style="width:600px; margin:0px auto">
                 <form class="" action="" method="post">
                     <div class="form-group pt-3">
-                        <label for="name">Your name</label>
+                        <label for="full_name">Your name</label>
                         <input type="text" name="full_name" class="form-control">
                     </div>
                     <div class="form-group">
@@ -67,11 +71,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            <label for="sel1">Select user Role</label>
+                            <label for="user_role_id">Select user Role</label>
                             <select class="form-control" name="user_role_id" id="user_role_id">
-                                <option value="1">Admin</option>
-                                <option value="2">Editor</option>
-                                <option value="3">User only</option>
+                                <?php
+                                $role_query = "SELECT * FROM tbl_user_role";
+                                $role_result = mysqli_query($link, $role_query);
+                                while ($row = mysqli_fetch_assoc($role_result)) {
+                                    $role_id = $row['id'];
+                                    $role_name = $row['user_role'];
+                                    echo "<option value='$role_id'>$role_name</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>

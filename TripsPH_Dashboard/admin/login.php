@@ -5,22 +5,25 @@ require_once('../admin/config.php');
 
 if (isset($_POST['login'])) {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
-        $email     = trim($_POST['email']);
-        $password   = trim($_POST['password']);
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
 
-        $md5Password = md5($password);
+        // Use bcrypt to hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "select * from tbl_users where email = '" . $email . "' and password = '" . $md5Password . "'";
-        $rs = mysqli_query($link, $sql);
-        $getNumRows = mysqli_num_rows($rs);
+        $sql = "SELECT * FROM tbl_users WHERE email = ? LIMIT 1";
+        $stmt = mysqli_prepare($link, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $email);
+        mysqli_stmt_execute($stmt);
+        $rs = mysqli_stmt_get_result($stmt);
+        $getUserRow = mysqli_fetch_assoc($rs);
 
-        if ($getNumRows == 1) {
-            $getUserRow = mysqli_fetch_assoc($rs);
+        if ($getUserRow && password_verify($password, $getUserRow['password'])) {
             unset($getUserRow['password']);
 
             $_SESSION = $getUserRow;
 
-            header('location:dashboard.php');
+            header('Location: dashboard.php');
             exit;
         } else {
             $errorMsg = "Wrong email or password";
@@ -30,16 +33,13 @@ if (isset($_POST['login'])) {
 
 if (isset($_GET['logout']) && $_GET['logout'] == true) {
     session_destroy();
-    header("location:admin/login.php");
+    header("Location: admin/login.php");
     exit;
 }
 
-
 if (isset($_GET['lmsg']) && $_GET['lmsg'] == true) {
-    $errorMsg = "Login required to access dashboard";
+    $errorMsg = "Login required to access the dashboard";
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -70,11 +70,13 @@ if (isset($_GET['lmsg']) && $_GET['lmsg'] == true) {
             <h3 class='text-center'></i>TRIPS PH ADMIN</h3>
         </div>
         <div class="card-body">
-
-
             <div style="width:450px; margin:0px auto">
-
                 <form class="" action="" method="post">
+                    <?php if (isset($errorMsg)) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $errorMsg; ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" name="email" class="form-control">
@@ -86,12 +88,8 @@ if (isset($_GET['lmsg']) && $_GET['lmsg'] == true) {
                     <div class="form-group">
                         <button type="submit" name="login" class="btn btn-success">Login</button>
                     </div>
-
-
                 </form>
             </div>
-
-
         </div>
     </div>
 
