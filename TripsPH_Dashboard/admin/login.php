@@ -18,13 +18,19 @@ if (isset($_POST['login'])) {
         $rs = mysqli_stmt_get_result($stmt);
         $getUserRow = mysqli_fetch_assoc($rs);
 
-        if ($getUserRow && password_verify($password, $getUserRow['password'])) {
-            unset($getUserRow['password']);
+        if ($getUserRow) {
+            if ($getUserRow['status'] == 1 && password_verify($password, $getUserRow['password'])) {
+                unset($getUserRow['password']);
 
-            $_SESSION = $getUserRow;
+                $_SESSION = $getUserRow;
 
-            header('Location: dashboard.php');
-            exit;
+                header('Location: dashboard.php');
+                exit;
+            } elseif ($getUserRow['status'] == 0) {
+                $errorMsg = "Your account is deactivated. Please contact the administrator.";
+            } else {
+                $errorMsg = "Wrong email or password";
+            }
         } else {
             $errorMsg = "Wrong email or password";
         }
@@ -49,20 +55,13 @@ if (isset($_GET['lmsg']) && $_GET['lmsg'] == true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>TripsPH Admin Dashboard</title>
-
-    <!-- style libraries -->
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-        <title>TripsPH Admin Dashboard</title>
-        <link rel="stylesheet" href="../assets/styles1.css">
-        <!-- Copied from https://icons8.com/line-awesome/howto then copy the CDN for icons  -->
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-        <link rel="stylesheet" href="assets/bootstrap.min.css">
-        <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
-    </head>
+    <link rel="stylesheet" href="../assets/styles1.css">
+    <!-- Copied from https://icons8.com/line-awesome/howto then copy the CDN for icons  -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+</head>
 
 <body class="bg-dark">
     <div class="card ">

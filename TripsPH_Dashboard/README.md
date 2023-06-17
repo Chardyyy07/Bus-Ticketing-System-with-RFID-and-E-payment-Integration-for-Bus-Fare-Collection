@@ -20,11 +20,12 @@ Assets Folder ==== This folder has css, js, bootstarp and plugins file
 Inc Folder ==== This folder has config.php file in which there is a database connection and getUserAccessRoleByID() function.
 Layouts Folder ==== This folder has 3 files footer.php, header,left_sidebar.php. ==== I split static content of admin template in these files.
 
-Todo tom:
+Update:
 Activate/deact account
 fix updated by
 fix updated at
+front end of register.php
+payment.php
+index.php
 
-Fixes
-Add record accounts cant used in log in
-change/update password is working
+Todo tom:

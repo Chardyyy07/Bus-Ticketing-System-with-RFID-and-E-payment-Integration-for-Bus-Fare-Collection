@@ -1,11 +1,15 @@
 <?php
-include "../config.php";
+include "../../admin/config.php";
 $id = $_GET["id"];
-$sql = "DELETE FROM `users` WHERE id = $id";
+$id = mysqli_real_escape_string($link, $id); // Escape the user input to prevent SQL injection
+
+$sql = "DELETE FROM `tbl_users` WHERE id = '$id'"; // Fix the SQL statement
+
 $result = mysqli_query($link, $sql);
 
 if ($result) {
-  header("Location: bus_fare_collection.php?msg=Data deleted successfully");
+    header("Location: adminuser.php?msg=Data deleted successfully");
+    exit; // Add an exit statement after redirecting to prevent further code execution
 } else {
-  echo "Failed: " . mysqli_error($link);
+    echo "Failed: " . mysqli_error($link);
 }
