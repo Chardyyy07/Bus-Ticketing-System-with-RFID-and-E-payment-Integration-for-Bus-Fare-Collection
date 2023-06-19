@@ -21,11 +21,6 @@ Inc Folder ==== This folder has config.php file in which there is a database con
 Layouts Folder ==== This folder has 3 files footer.php, header,left_sidebar.php. ==== I split static content of admin template in these files.
 
 Update:
-Activate/deact account
-fix updated by
-fix updated at
-front end of register.php
-payment.php
-index.php
+edit profile for who is signed in only
 
 Todo tom:

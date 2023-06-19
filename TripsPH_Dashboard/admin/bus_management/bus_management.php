@@ -116,7 +116,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="../bus_management/bus_management.php">
+                        <a href="../bus_management/bus_management.php" class="active">
                             <span class="las la-bus-alt"></span>
                             <small>Bus Management</small>
                         </a>
@@ -145,7 +145,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                     <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
                         <label for="">
                             <span class="las la-users"></span>
-                            <a href="adminuser.php"><span>User List</span></a>
+                            <a href="../adminuser/adminuser.php"><span>User List</span></a>
                         </label>
                     <?php } else { ?>
                         <label for="">
@@ -189,12 +189,11 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                     <thead>
                                         <tr>
                                             <th style="text-align: center; vertical-align: middle;">ID</th>
-                                            <th style="text-align: center; vertical-align: middle;">Role</th>
-                                            <th style="text-align: center; vertical-align: middle;">Fullname</th>
-                                            <th style="text-align: center; vertical-align: middle;">Username</th>
-                                            <th style="text-align: center; vertical-align: middle;">Email</th>
-                                            <th style="text-align: center; vertical-align: middle;">Mobile</th>
-                                            <th style="text-align: center; vertical-align: middle;">Status</th>
+                                            <th style="text-align: center; vertical-align: middle;">Bus No. </th>
+                                            <th style="text-align: center; vertical-align: middle;">Bus Type</th>
+                                            <th style="text-align: center; vertical-align: middle;">Purchase Date</th>
+                                            <th style="text-align: center; vertical-align: middle;">Operator</th>
+                                            <th style="text-align: center; vertical-align: middle;">Route</th>
                                             <th style="text-align: center; vertical-align: middle;">Created At</th>
                                             <th style="text-align: center; vertical-align: middle;">Updated At</th>
                                             <th style="text-align: center; vertical-align: middle;">Actions</th>
@@ -212,20 +211,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                         ?>
                                             <tr> <!-- user role code -->
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["id"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <?php
-                                                    $userRole = $row["user_role"];
-                                                    if ($userRole == "Admin") {
-                                                        echo "<span class='badge badge-lg badge-success text-white'>Admin</span>";
-                                                    } elseif ($userRole == "Editor") {
-                                                        echo "<span class='badge badge-lg badge-info text-white'>Editor</span>";
-                                                    } elseif ($userRole == "User Only") {
-                                                        echo "<span class='badge badge-lg badge-dark text-white'>User Only</span>";
-                                                    } else {
-                                                        echo $userRole;
-                                                    }
-                                                    ?>
-                                                </td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["full_name"] ?></td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["username"] ?></td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["email"] ?></td>
@@ -242,7 +227,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                                         <?php if ($_SESSION['user_role_id'] <= 1) { ?>
                                                             <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row["id"] ?>">Delete</a>
                                                         <?php } ?>
-                                                        <a class="btn btn-warning btn-sm" href="status.php?id=<?php echo $row["id"] ?>&action=<?php echo $status == "1" ? "deactivate" : "activate" ?>"><?php echo $status == "1" ? "Deactivate" : "Activate" ?></a>
+
                                                     <?php } ?>
                                                 </td>
                                             </tr>

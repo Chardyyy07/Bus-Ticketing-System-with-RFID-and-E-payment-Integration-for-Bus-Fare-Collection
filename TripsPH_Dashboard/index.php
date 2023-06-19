@@ -8,7 +8,7 @@
     <title>TRIPsPH</title>
 
     <!-- Style-->
-    <link rel="stylesheet" href="admin/assets/styles.css" />
+    <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 

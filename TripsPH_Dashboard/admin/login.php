@@ -55,10 +55,11 @@ if (isset($_GET['lmsg']) && $_GET['lmsg'] == true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>TripsPH Admin Dashboard</title>
+
     <link rel="stylesheet" href="../assets/styles1.css">
     <!-- Copied from https://icons8.com/line-awesome/howto then copy the CDN for icons  -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 </head>

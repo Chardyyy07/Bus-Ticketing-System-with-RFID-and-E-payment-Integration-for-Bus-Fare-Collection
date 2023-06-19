@@ -1,3 +1,8 @@
+
+
+-- Database: `tripsph`
+
+
 SET time_zone = "+08:00";
 
 CREATE TABLE `tbl_users` (
@@ -15,9 +20,9 @@ CREATE TABLE `tbl_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tbl_users` (`id`, `user_role_id`, `full_name`, `username`, `email`, `mobile`, `password`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 'anya', 'any@', 'anya@anya', '213', '$2y$10$lzu/Jm9qm3sqnfeFjzWXue3PEBlsKMf.PagqdB2QFnQ4lovWl50GW', 1, '2023-06-17 00:33:14', '2023-06-16 16:33:14'),
-(2, 1, 'chard', 'chard', 'chard@chard', '2313', '$2y$10$mtO/0fyt5pyhHIStA.79VOyvd6alYidtz8lAl70zbp7xEUmUhmm1W', 1, '2023-06-17 00:33:58', '2023-06-16 16:33:58'),
-(3, 1, 'yor', 'yor@yor', 'yor@yor', '123', '$2y$10$ysd3l00wvt45goBszjF2aekb.6z7TcJzW2kvKbk9SY5uGuDYvgvD.', 1, '2023-06-17 00:36:33', '2023-06-16 16:36:33');
+(1, 1, 'Anya Forger', 'anyapeanut', 'anya@anya', '911', '$2y$10$EqgwvYW9IeTJFX/FOWpuk.AkFpiOHhzq/j7nqBjy0/AvGTXva4I5W', 1, '2023-06-17 06:42:38', '2023-06-17 06:42:41'),
+(2, 2, 'Loid Forger', 'Starlight', 'loid@loid', '911', '$2y$10$bsxUXMaaTJRrjLn07uS/euhBhkz05kr.Pjm4geuGMh8sOGiI.e3aK', 1, '2023-06-17 06:43:39', '2023-06-17 06:43:47'),
+(3, 3, 'Yor Forger', 'YorAssassin', 'yor@yor', '911', '$2y$10$Hfbganfaunj54se//hpvEu7s4yTKMdX/2YDeRFcoYKejRsZKD9Mli', 1, '2023-06-17 06:45:37', '2023-06-18 03:18:27');
 
 CREATE TABLE IF NOT EXISTS `tbl_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -29,3 +34,35 @@ INSERT INTO `tbl_user_role` (`id`, `user_role`) VALUES
   (1, 'Admin'),
   (2, 'Editor'),
   (3, 'User Only');
+
+
+
+
+SET time_zone = "+08:00";
+
+CREATE TABLE `tbl_fare_matrix` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(10) DEFAULT NULL,
+  `to` varchar(10) DEFAULT NULL,
+  `price` varchar(11) DEFAULT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `tbl_landmark` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `landmark` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `tbl_load_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rfid` varchar(12) NOT NULL,
+  `load` varchar(20) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

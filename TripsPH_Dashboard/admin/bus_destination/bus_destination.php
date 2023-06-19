@@ -11,29 +11,29 @@ if (!isset($_SESSION['id'], $_SESSION['user_role_id'])) {
 // Include the config file
 require_once('../../admin/config.php');
 
-// Check if the form is submitted to update user status
-if (isset($_GET['id']) && isset($_GET['action'])) {
-    // Store the user ID and action from the URL parameters
-    $user_id = $_GET['id'];
-    $action = $_GET['action'];
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the form data
+    $from = $_POST['from'];
+    $to = $_POST['to'];
+    $fare = $_POST['fare'];
 
-    // Validate and prepare the SQL query to update the user status based on the action
-    if ($action === 'deactivate') {
-        $status = 0; // Inactive status
-    } elseif ($action === 'activate') {
-        $status = 1; // Active status
+    // Validate the form data (add your validation rules here)
+
+    // Insert the data into the tbl_fare_matrix table
+    $query  = "INSERT INTO tbl_fare_matrix (from, to, fare) VALUES ('$from', '$to', '$fare')";
+
+    if (mysqli_query($link, $query)) {
+        // Data inserted successfully
+        header("Location: adminuser.php?msg=New record created successfully");
+        exit(); // Add exit() after header() to prevent further execution
     } else {
-        // Invalid action, redirect back to the user list
-        header('location: adminuser.php');
-        exit;
+        // Error occurred while inserting data
+        echo "Error: " . mysqli_error($link);
     }
-
-    // Update the user status in the database
-    $sql = "UPDATE `tbl_users` SET `status` = $status WHERE `id` = $user_id";
-    mysqli_query($link, $sql);
 }
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -122,7 +122,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="../bus_destination/bus_destination.php">
+                        <a href="../bus_destination/bus_destination.php" class="active">
                             <span class="las la-bus"></span>
                             <small>Bus Destination Management</small>
                         </a>
@@ -145,7 +145,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                     <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
                         <label for="">
                             <span class="las la-users"></span>
-                            <a href="adminuser.php"><span>User List</span></a>
+                            <a href="../adminuser/adminuser.php"><span>User List</span></a>
                         </label>
                     <?php } else { ?>
                         <label for="">
@@ -171,30 +171,93 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             <!-- User List -->
             <div class="page-content">
                 <div class="records table-responsive">
+                    <!-- Add Landmark Form -->
                     <div class="record-header">
-                        <div class="add">
-                            <!-- Add Record (visible to admin and editor) -->
-                            <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
-                                <a href="addrecord.php" class="btn btn-info btn-sm">Add Record</a>
-                            <?php } else { ?>
-                                <a class="btn btn-info btn-sm disabled">Add Record</a>
-                            <?php } ?>
-                        </div>
-                    </div>
+                        <div class="records table-responsive">
+                            <div class="">
+                                <form action="" method="POST">
+                                    <label for="from">From:</label>
+                                    <input type="text" id="from" name="from" placeholder="Enter from location">
 
-                    <div>
-                        <div class="record-header">
+                                    <label for="to">To:</label>
+                                    <input type="text" id="to" name="to" placeholder="Enter to location">
+
+                                    <label for="fare">Fare:</label>
+                                    <input type="text" id="fare" name="fare" placeholder="Enter fare amount">
+
+                                    <button class="btn btn-success btn-sm" style="color: white;" name="submit">Save</button>
+                                </form>
+                                <div class="record-header">
+                                    <div class="records table-responsive">
+                                        <table id="example" class="table table-striped" style="width: 100%; text-align: center; vertical-align: middle;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center; vertical-align: middle;">ID</th>
+                                                    <th style="text-align: center; vertical-align: middle;">From:</th>
+                                                    <th style="text-align: center; vertical-align: middle;">To:</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Total Fare:</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Created At</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Updated At</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody> <!-- status code -->
+                                                <?php
+                                                $sql = "SELECT * FROM `tbl_fare_matrix`";
+                                                $result = mysqli_query($link, $sql);
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $userId = $row["id"];
+                                                    $status = $row["status"];
+                                                    $statusBadge = $status == "1" ? "Active" : "Inactive";
+                                                    $statusClass = $status == "1" ? "badge-success" : "badge-danger";
+                                                ?>
+                                                    <tr> <!-- user role code -->
+                                                        <td style="text-align: center; vertical-align: middle;"><?php echo $row["id"] ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;"><?php echo $row["from"] ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;"><?php echo $row["to"] ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;"><?php echo $row["fare"] ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;"><?php echo $row["created_at"] ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;"><?php echo $row["updated_at"] ?></td>
+                                                        <td class="actions" style="text-align: center; vertical-align: middle;">
+                                                            <a class="btn btn-success btn-sm" href="view.php?id=<?php echo $row["id"] ?>">View</a>
+                                                            <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
+                                                                <a class="btn btn-info btn-sm" href="edit.php?id=<?php echo $row["id"] ?>">Edit</a>
+                                                                <?php if ($_SESSION['user_role_id'] <= 1) { ?>
+                                                                    <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row["id"] ?>">Delete</a>
+                                                                <?php } ?>
+
+                                                            <?php } ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2nd Table -->
                             <div class="records table-responsive">
+                                <div class="record-header">
+                                    <div class="add">
+                                        <!-- Add Record (visible to admin and editor) -->
+                                        <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
+                                            <a href="addrecord.php" class="btn btn-info btn-sm d-flex align-items-center">
+                                                <span class="las la-plus-circle" style="font-size: 32px; color: white;"></span>
+                                                <span class="ms-2" style="color: white;">Add Landmark</span>
+                                            </a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-info btn-sm disabled">Add Record</a>
+                                        <?php } ?>
+                                    </div>
+                                </div>
                                 <table id="example" class="table table-striped" style="width: 100%; text-align: center; vertical-align: middle;">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center; vertical-align: middle;">ID</th>
-                                            <th style="text-align: center; vertical-align: middle;">Role</th>
-                                            <th style="text-align: center; vertical-align: middle;">Fullname</th>
-                                            <th style="text-align: center; vertical-align: middle;">Username</th>
-                                            <th style="text-align: center; vertical-align: middle;">Email</th>
-                                            <th style="text-align: center; vertical-align: middle;">Mobile</th>
-                                            <th style="text-align: center; vertical-align: middle;">Status</th>
+                                            <th style="text-align: center; vertical-align: middle;">Landmark</th>
                                             <th style="text-align: center; vertical-align: middle;">Created At</th>
                                             <th style="text-align: center; vertical-align: middle;">Updated At</th>
                                             <th style="text-align: center; vertical-align: middle;">Actions</th>
@@ -202,7 +265,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                     </thead>
                                     <tbody> <!-- status code -->
                                         <?php
-                                        $sql = "SELECT u.*, r.user_role FROM `tbl_users` u INNER JOIN `tbl_user_role` r ON u.user_role_id = r.id";
+                                        $sql = "SELECT * FROM `tbl_landmark`";
                                         $result = mysqli_query($link, $sql);
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             $userId = $row["id"];
@@ -212,27 +275,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                         ?>
                                             <tr> <!-- user role code -->
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["id"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <?php
-                                                    $userRole = $row["user_role"];
-                                                    if ($userRole == "Admin") {
-                                                        echo "<span class='badge badge-lg badge-success text-white'>Admin</span>";
-                                                    } elseif ($userRole == "Editor") {
-                                                        echo "<span class='badge badge-lg badge-info text-white'>Editor</span>";
-                                                    } elseif ($userRole == "User Only") {
-                                                        echo "<span class='badge badge-lg badge-dark text-white'>User Only</span>";
-                                                    } else {
-                                                        echo $userRole;
-                                                    }
-                                                    ?>
-                                                </td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["full_name"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;"><?php echo $row["username"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;"><?php echo $row["email"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;"><?php echo $row["mobile"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <span class="badge badge-lg <?php echo $statusClass ?> text-white"><?php echo $statusBadge ?></span>
-                                                </td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["created_at"] ?></td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["updated_at"] ?></td>
                                                 <td class="actions" style="text-align: center; vertical-align: middle;">
@@ -242,32 +285,26 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                                         <?php if ($_SESSION['user_role_id'] <= 1) { ?>
                                                             <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row["id"] ?>">Delete</a>
                                                         <?php } ?>
-                                                        <a class="btn btn-warning btn-sm" href="status.php?id=<?php echo $row["id"] ?>&action=<?php echo $status == "1" ? "deactivate" : "activate" ?>"><?php echo $status == "1" ? "Deactivate" : "Activate" ?></a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php
                                         }
                                         ?>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
         </main>
-    </div>
 
-    <!-- Script for the table -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
+        <!-- Script for the table -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+                $('#example2').DataTable();
+            });
+        </script>
 </body>
 
 </html>

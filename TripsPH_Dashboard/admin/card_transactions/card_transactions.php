@@ -11,28 +11,27 @@ if (!isset($_SESSION['id'], $_SESSION['user_role_id'])) {
 // Include the config file
 require_once('../../admin/config.php');
 
-// Check if the form is submitted to update user status
-if (isset($_GET['id']) && isset($_GET['action'])) {
-    // Store the user ID and action from the URL parameters
-    $user_id = $_GET['id'];
-    $action = $_GET['action'];
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the form data
+    $from = $_POST['from'];
+    $to = $_POST['to'];
+    $fare = $_POST['fare'];
 
-    // Validate and prepare the SQL query to update the user status based on the action
-    if ($action === 'deactivate') {
-        $status = 0; // Inactive status
-    } elseif ($action === 'activate') {
-        $status = 1; // Active status
+    // Validate the form data (add your validation rules here)
+
+    // Insert the data into the tbl_fare_matrix table
+    $query  = "INSERT INTO tbl_fare_matrix (from, to, fare) VALUES ('$from', '$to', '$fare')";
+
+    if (mysqli_query($link, $query)) {
+        // Data inserted successfully
+        header("Location: adminuser.php?msg=New record created successfully");
+        exit(); // Add exit() after header() to prevent further execution
     } else {
-        // Invalid action, redirect back to the user list
-        header('location: adminuser.php');
-        exit;
+        // Error occurred while inserting data
+        echo "Error: " . mysqli_error($link);
     }
-
-    // Update the user status in the database
-    $sql = "UPDATE `tbl_users` SET `status` = $status WHERE `id` = $user_id";
-    mysqli_query($link, $sql);
 }
-
 ?>
 
 
@@ -110,7 +109,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="../card_transactions/card_transactions.php">
+                        <a href="../card_transactions/card_transactions.php" class="active">
                             <span class="las la-credit-card"></span>
                             <small>Card Transactions</small>
                         </a>
@@ -145,7 +144,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                     <?php if (($_SESSION['user_role_id'] == 1) || $_SESSION['user_role_id'] == 2) { ?>
                         <label for="">
                             <span class="las la-users"></span>
-                            <a href="adminuser.php"><span>User List</span></a>
+                            <a href="../adminuser/adminuser.php"><span>User List</span></a>
                         </label>
                     <?php } else { ?>
                         <label for="">
@@ -189,12 +188,9 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                     <thead>
                                         <tr>
                                             <th style="text-align: center; vertical-align: middle;">ID</th>
-                                            <th style="text-align: center; vertical-align: middle;">Role</th>
-                                            <th style="text-align: center; vertical-align: middle;">Fullname</th>
-                                            <th style="text-align: center; vertical-align: middle;">Username</th>
-                                            <th style="text-align: center; vertical-align: middle;">Email</th>
-                                            <th style="text-align: center; vertical-align: middle;">Mobile</th>
-                                            <th style="text-align: center; vertical-align: middle;">Status</th>
+                                            <th style="text-align: center; vertical-align: middle;">RFID</th>
+                                            <th style="text-align: center; vertical-align: middle;">Load</th>
+                                            <th style="text-align: center; vertical-align: middle;">Balance</th>
                                             <th style="text-align: center; vertical-align: middle;">Created At</th>
                                             <th style="text-align: center; vertical-align: middle;">Updated At</th>
                                             <th style="text-align: center; vertical-align: middle;">Actions</th>
@@ -212,22 +208,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                         ?>
                                             <tr> <!-- user role code -->
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["id"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <?php
-                                                    $userRole = $row["user_role"];
-                                                    if ($userRole == "Admin") {
-                                                        echo "<span class='badge badge-lg badge-success text-white'>Admin</span>";
-                                                    } elseif ($userRole == "Editor") {
-                                                        echo "<span class='badge badge-lg badge-info text-white'>Editor</span>";
-                                                    } elseif ($userRole == "User Only") {
-                                                        echo "<span class='badge badge-lg badge-dark text-white'>User Only</span>";
-                                                    } else {
-                                                        echo $userRole;
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td style="text-align: center; vertical-align: middle;"><?php echo $row["full_name"] ?></td>
-                                                <td style="text-align: center; vertical-align: middle;"><?php echo $row["username"] ?></td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["email"] ?></td>
                                                 <td style="text-align: center; vertical-align: middle;"><?php echo $row["mobile"] ?></td>
                                                 <td style="text-align: center; vertical-align: middle;">
@@ -242,7 +222,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                                                         <?php if ($_SESSION['user_role_id'] <= 1) { ?>
                                                             <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row["id"] ?>">Delete</a>
                                                         <?php } ?>
-                                                        <a class="btn btn-warning btn-sm" href="status.php?id=<?php echo $row["id"] ?>&action=<?php echo $status == "1" ? "deactivate" : "activate" ?>"><?php echo $status == "1" ? "Deactivate" : "Activate" ?></a>
+
                                                     <?php } ?>
                                                 </td>
                                             </tr>

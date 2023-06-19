@@ -114,7 +114,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <div>
                         <button type="submit" class="btn btn-success" name="submit">Save</button>
                         <a href="updatepass.php" class="btn btn-info">Update Password</a>
-                        <a href="../adminuser/adminuser.php" class="btn btn-danger">Cancel</a>
+                        <a href="adminuser.php" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>
             </div>
