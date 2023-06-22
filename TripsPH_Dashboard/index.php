@@ -52,21 +52,21 @@
 
         <section id="features-services">
             <div class="container1">
-                <img src="admin/assets/img/Reloadable Payment Card.jpg" alt="Feature 1">
+                <img src="assets/img/Reloadable Payment Card.jpg" alt="Feature 1">
                 <h2>Reloadable Payment Card</h2>
                 <p>Our reloadable payment cards are now available for use in provincial buses, providing a safer and more convenient commute without the need for cash. With our RFID cards, passengers can simply tap in and out to pay for their fare. </p>
                 <a href="payment.php" class="servbtn">MORE</a>
             </div>
 
             <div class="container1">
-                <img src="admin/assets/img/Reload using Digital Payment.jpg" alt="Feature 3">
+                <img src="assets/img/Reload using Digital Payment.jpg" alt="Feature 3">
                 <h2>Reload your TRIPsPH Card using Digital Payment</h2>
                 <p>Our digital payment channel allows passengers to conveniently reload their payment cards using their preferred payment method.</p>
                 <a href="payment.php" class="servbtn">LOAD NOW!</a>
             </div>
 
             <div class="container1">
-                <img src="admin/assets/img/Automatic Fare Collection System.jpg" alt="Feature 2">
+                <img src="assets/img/Automatic Fare Collection System.jpg" alt="Feature 2">
                 <h2>Automatic Fare Collection System</h2>
                 <p>Our Automatic Fare Collection System uses web and RFID technology to provide a seamless ticketing process for public transportation.It also includes real-time data tracking and precise management reports that can be easily monitored online
                     for efficient management.</p>

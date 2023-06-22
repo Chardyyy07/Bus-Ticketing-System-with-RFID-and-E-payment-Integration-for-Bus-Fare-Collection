@@ -64,7 +64,7 @@
       <label for="payment_method">Mode of Payment:</label><br />
       <div>
         <input type="radio" id="pay_maya" name="payment_method" value="pay_maya" />
-        <label for="pay_maya"><img src="admin/assets/img/paymaya.png" alt="Paymaya" /></label>
+        <label for="pay_maya"><img src="assets/img/paymaya.png" alt="Paymaya" /></label>
       </div>
     </form>
   </div>
@@ -77,19 +77,18 @@
       <input type="text" id="email" name="card_number" /><br />
       <input type="submit" value="Submit" onclick="generateReceipt()" />
     </form>
-  </div>
 
-  <!--div element that serves as the floating pop-up window.-->
-  <div id="orderSummary" class="popup">
-    <h2>Order Summary</h2>
-    <p id="denominationSummary"></p>
-    <p id="paymentMethodSummary"></p>
-    <p id="cardNumberSummary"></p>
-    <p id="emailSummary"></p>
-    <p id="denominationSummary"></p>
-    <button onclick="cancelOrder()">Cancel</button>
-  </div>
-  <script src="admin/assets/payment.js"></script>
+    <!--div element that serves as the floating pop-up window.-->
+    <div id="orderSummary" class="popup">
+      <h2>Order Summary</h2>
+      <p id="denominationSummary"></p>
+      <p id="paymentMethodSummary"></p>
+      <p id="cardNumberSummary"></p>
+      <p id="emailSummary"></p>
+      <p id="denominationSummary"></p>
+      <button onclick="cancelOrder()">Cancel</button>
+    </div>
+    <script src="assets/payment.js"></script>
 </body>
 
 </html>
