@@ -32,7 +32,7 @@ collects, stores, and manages reload transaction records, ensuring
 transparency and accountability throughout its operation.
 
 <h1 align="center">
-  <img src="https://github.com/Chardyyy07/-Remote-Control-your-Personal-Computers/blob/b40d5b03e9e7e55a436181d0505675d6d467aff4/Server(RCPC)/RCPC%20SERVER/logo.jpg" width="224px"/><br/> 
+  <img src="https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/d28f66cdfea26272ddb6114fa0ad86510cd487ef/TripsPH_Dashboard/Screenshots/LOGO.png" width="224px"/><br/> 
   TripsPH: Transportation RFID Integrated System using PHP
 </h1>
 <p align="center"><b> The TripsPH is a bus ticketing system that uses RFID, ESP-8266 microcontroller, thermal printer, LCD, LED, Haversine formula, web development frameworks and Stripe integration to optimize fare collection, data management, and passenger convenience.</b></p>
