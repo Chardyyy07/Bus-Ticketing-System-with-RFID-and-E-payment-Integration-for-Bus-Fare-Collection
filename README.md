@@ -120,10 +120,10 @@ We would like to thank our professor, Mr. Utulo our Research Adviser, for guidin
 
 # Contact Us:
 
-Edrian.zedric@gmail.com
-atibagosferdenan@gmail.com
-jayarelsisura@gmail.com
-andreinunez15@gmail.com
-richardfloresjohn@gmail.com
-regienaldcabannamontalvo1@gmail.com
+- Edrian.zedric@gmail.com
+- atibagosferdenan@gmail.com
+- jayarelsisura@gmail.com
+- andreinunez15@gmail.com
+- richardfloresjohn@gmail.com
+- regienaldcabannamontalvo1@gmail.com
 
