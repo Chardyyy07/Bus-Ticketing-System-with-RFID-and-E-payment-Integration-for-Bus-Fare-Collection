@@ -107,7 +107,7 @@ The RFID reader is a device that can read and write data from RFID cards, which 
 <p align="center">
 | TripsPH Fare Box | TripsPH Card |
 | :--------------: | :----------: |
-|    ![](TripsPH_Dashboard/Screenshots/TripsPH_Fare_Box.jpg)     |  ![](https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/7ef654e43edf92ee3e551b990a3e4f3522ca39c7/TripsPH_Dashboard/Screenshots/TripsPH%20Card%20.jpeg)   |
+|    ![](<img src=TripsPH_Dashboard/Screenshots/TripsPH_Fare_Box.jpg" width="224px"/><br/>)     |  ![](<img src=https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/7ef654e43edf92ee3e551b990a3e4f3522ca39c7/TripsPH_Dashboard/Screenshots/TripsPH%20Card%20.jpeg" width="224px"/><br/>)   |
 
 </p>
 
