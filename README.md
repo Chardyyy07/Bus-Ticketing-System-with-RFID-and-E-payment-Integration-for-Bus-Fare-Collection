@@ -2,34 +2,7 @@
 
 # What is TripsPH?
 
-The TripsPH (Transportation RFID Integrated System using PHP) is our
-Thesis entitled the "Bus Ticketing System with RFID and E-payment Integration
-for bus fare collection" introduces a multifaceted approach to optimize
-bus ticketing systems. Its core technology is powered by the ESP-8266
-microcontroller that utilizes Radio Frequency Identification (RFID) for
-enhanced data retrieval, fare administration, and passenger convenience.
-Specialized Arduino code ensures accurate recording of card entry and
-exit, providing precise data retrieval and passenger tracking during bus
-journeys. Haversine formula was implemented specifically to manage fare
-collection and calculate distances travelled. The system also features
-a thermal printer to generate journey tickets and receipts, displaying
-fare amount, journey details, and other relevant information such as
-distance travel and the place of dispatch and arrival. Real-time
-communication is facilitated through a status indicator, utilizing a
-Liquid Crystal Display (LCD) and Light Emitting Diode (LED) for success
-and failed tapping, resulting in efficient communication and transit
-operations. The study also integrates a comprehensive Administrative
-System, enabling various user roles to manage fare matrix, rules, profiles,
-and trip records, thereby ensuring efficient management and control of
-associated data. With automation processes handling passenger origin
-and destination details, verifying accuracy, and calculating distances
-travelled, fare calculation and collection are further simplified.
-The Stripe integration as a digital payment method allows cashless
-transactions for RFID cards which provides real-time updates on payment
-status but the reloading system was not limited to this type of payment;
-it was also available in Gcash and Paymaya. This system effectively
-collects, stores, and manages reload transaction records, ensuring
-transparency and accountability throughout its operation.
+The TripsPH (Transportation RFID Integrated System using PHP) is our Thesis entitled the "Bus Ticketing System with RFID and E-payment Integration that uses RFID, ESP-8266 microcontroller, thermal printer, LCD, LED, Haversine formula, web development frameworks and Stripe integration to optimize fare collection, data management, and passenger convenience. It is a thesis project that aims to improve the efficiency and accuracy of bus journeys by automating the processes of card tapping, fare calculation, receipt printing, and payment verification. It also allows users to reload their RFID cards using different payment methods and view their transaction history online. The system has an administrative dashboard that enables various user roles to manage the data and rules related to the bus operations.
 
 <h1 align="center">
   <img src="https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/d28f66cdfea26272ddb6114fa0ad86510cd487ef/TripsPH_Dashboard/Screenshots/LOGO.png" width="224px"/><br/> 
