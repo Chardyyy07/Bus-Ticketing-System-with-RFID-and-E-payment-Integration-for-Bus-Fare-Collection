@@ -66,7 +66,7 @@ The TripsPH (Transportation RFID Integrated System using PHP) is our Thesis enti
 ###### Installation/Setup of TripsPH Fare Box :
 
 - Download all the required libraries inside Arduino IDE
-- Open the
+- Open the TripsPH_Fare_Box.ino using the Arduino IDE
 - Put Your Server or Local Network WIFI SSID and Password to TripsPH_Fare_Box.ino
 - Compile then Run
 
