@@ -121,11 +121,13 @@ user only = view, profile, add deactivate
 | :------------------: | :---------------------: |
 |      ![](https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/b9c2589518186839837606ad21261e5c0a8847d6/TripsPH_Dashboard/Screenshots/TripsPH_LandingPage.jpg)       |        ![](https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/d0a0ec03b77c8e57d2c286215ed3f66fc6eacc2d/TripsPH_Dashboard/Screenshots/TripsPH_Dashboard.jpg)        |
 
+The TripsPH Web Appp composed of comprehensive Administrative System that enables various user roles to manage fare matrix, rules, profiles, and trip records. This system effectively collects, stores, and manages reload transaction records, ensuring transparency and accountability throughout its operation. The Stripe integration as a digital payment method allows cashless transactions for RFID cards which provides real-time updates on payment status but the reloading system was not limited to this type of payment; it was also available in Gcash and Paymaya. With automation processes handling passenger origin and destination details, verifying accuracy, and calculating distances travelled, fare calculation and collection are further simplified. This web app is an essential part of the "Bus Ticketing System with RFID and E-payment Integration for bus fare collection" that introduces a multifaceted approach to optimize bus ticketing systems.
+
 | TripsPH Fare Box | TripsPH Card |
 | :--------------: | :----------: |
 |    ![](TripsPH_Dashboard/Screenshots/TripsPH_Fare_Box.jpg)     |  ![](https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/7ef654e43edf92ee3e551b990a3e4f3522ca39c7/TripsPH_Dashboard/Screenshots/TripsPH%20Card%20.jpeg)   |
 
-The TripsPH Web Appp composed of comprehensive Administrative System that enables various user roles to manage fare matrix, rules, profiles, and trip records. This system effectively collects, stores, and manages reload transaction records, ensuring transparency and accountability throughout its operation. The Stripe integration as a digital payment method allows cashless transactions for RFID cards which provides real-time updates on payment status but the reloading system was not limited to this type of payment; it was also available in Gcash and Paymaya. With automation processes handling passenger origin and destination details, verifying accuracy, and calculating distances travelled, fare calculation and collection are further simplified. This web app is an essential part of the "Bus Ticketing System with RFID and E-payment Integration for bus fare collection" that introduces a multifaceted approach to optimize bus ticketing systems.
+
 
 <h1 align="center">
   <img src="TripsPH_Dashboard\Screenshots\Block_Diagram.jpeg" width="224px"/><br/>
