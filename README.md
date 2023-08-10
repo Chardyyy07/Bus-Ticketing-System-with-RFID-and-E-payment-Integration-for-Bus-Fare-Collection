@@ -104,24 +104,26 @@ The TripsPH Web Appp composed of comprehensive Administrative System that enable
 <p align="center">
 The RFID reader is a device that can read and write data from RFID cards, which are used by passengers to pay for their bus fares. The RFID reader is connected to the ESP-8266 microcontroller, which is the core of the system. The ESP-8266 microcontroller is a low-cost Wi-Fi chip that can communicate with the internet and other devices. It runs the Arduino code that implements the Haversine formula to calculate the distance travelled by the passengers and the fare amount. The ESP-8266 microcontroller also sends the data to the thermal printer, which prints out the tickets and receipts for the passengers. The thermal printer shows the fare amount, journey details, and other relevant information such as distance travel and the place of dispatch and arrival.The ESP-8266 microcontroller also controls the status indicator, which consists of an LCD display and an LED. The status indicator shows the success or failure of tapping the RFID card, as well as the balance and other messages. The LCD display is a screen that can show text and graphics, while the LED is a light that can change color depending on the status.The hardware components are powered by a battery or an external power source, depending on the availability and preference of the bus operator. The hardware components are also enclosed in a durable casing to protect them from damage and theft.
 
+# TripsPH Fare Box
 <h1 align="center">
   <img src="TripsPH_Dashboard/Screenshots/TripsPH_Fare_Box.jpg" width="224px"/><br/>
-  
-</h1><h1 align="center">
-  <img src="[TripsPH_Dashboard\Screenshots\Block_Diagram.jpeg](https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/7ef654e43edf92ee3e551b990a3e4f3522ca39c7/TripsPH_Dashboard/Screenshots/TripsPH%20Card%20.jpeg)" width="224px"/><br/>
 
 
-
-
+# TripsPH Cards
+<h1 align="center">
+  <img src="https://github.com/Chardyyy07/Bus-Ticketing-System-with-RFID-and-E-payment-Integration-for-Bus-Fare-Collection/blob/7ef654e43edf92ee3e551b990a3e4f3522ca39c7/TripsPH_Dashboard/Screenshots/TripsPH%20Card%20.jpeg" width="224px"/><br/>
 
 
 # Acknowledgements
 
 We would like to thank our professor, Mr. Utulo our Research Adviser, for guiding us throughout the development of this project
 
-# Prepared By:
+# Contact Us:
 
-    Flores, Richard John
-    Nunez, John Andrei
-    Montalvo, Regienald
-    Mose, Thea Marie
+Edrian.zedric@gmail.com
+atibagosferdenan@gmail.com
+jayarelsisura@gmail.com
+andreinunez15@gmail.com
+richardfloresjohn@gmail.com
+regienaldcabannamontalvo1@gmail.com
+
