@@ -72,17 +72,9 @@ The TripsPH (Transportation RFID Integrated System using PHP) is our Thesis enti
 
 ###### Account Roles :
 
-- Username: anya@anya
-- Password: anya123
-- Role: Admin
-
-- Username: loid@loid
-- Password: loid123
-- Role: Editor
-
-- Username: yor@yor
-- Password: yor123
-- Role: User only
+- Username: anya@anya, Password: anya123, Role: Admin
+- Username: loid@loid, Password: loid123, Role: Edito
+- Username: yor@yor, Password: yor123, Role: User only
 
 - admin = view, edit, delete, active, add, profile
 - editor = view, edit, profile, add deactivate
